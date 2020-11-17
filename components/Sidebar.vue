@@ -11,16 +11,12 @@
 
 <script>
 export default {
-  data(){
-    return{
-categories:[{"id":1,"name":"Рюкзаки"},{"id":2,"name":"Сумки-мессенджеры"},{"id":3,"name":"Деловые сумки"}]
-    }
-  },
-  /*computed: {
+  
+  computed: {
     categories() {
       return this.$store.getters.categories;
     }
-  },*/
+  },
   methods: {
     openCategory(category) {
       this.$router.push('/catalog/' + category.id)
