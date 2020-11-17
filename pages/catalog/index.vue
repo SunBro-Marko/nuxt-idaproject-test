@@ -1,12 +1,16 @@
 <template>
   <div class="container">
-    <h1>Тут будет пустая страница каталога</h1>
+    <div class="alert">
+      <h1>Каталог не выбран</h1>
+      <h2>Воспользуйтейсь боковым меню для выбора каталога</h2>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-    layout: 'market',
+  layout: "market",
+  middleware: ['initCatalog']
 };
 </script>
 
@@ -14,7 +18,7 @@ export default {
 .container {
   margin: 0 auto;
   min-height: 100vh;
-  display: flex;
+  display: grid;
   justify-content: center;
   align-items: center;
   text-align: center;
