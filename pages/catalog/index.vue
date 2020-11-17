@@ -1,13 +1,11 @@
 <template>
   <div class="container">
-    <div>
-        <h1>Страница с базовой информацией о приложении и ссылками</h1>
-    </div>
+    <h1>Тут будет пустая страница каталога</h1>
   </div>
 </template>
 
 <script>
-export default {}
+export default {};
 </script>
 
 <style>
