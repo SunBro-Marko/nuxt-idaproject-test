@@ -1,7 +1,7 @@
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
-    title: 'mynuxtapp',
+    title: 'Test app for IDA.Project',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -10,6 +10,11 @@ export default {
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
     ]
+  },
+
+  loading: {
+    color: 'blue',
+    height: '5px'
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)

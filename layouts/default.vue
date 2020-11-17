@@ -1,10 +1,7 @@
 <template>
-  <div>
-    Слой для всего остального
+  <div>    
     <Nuxt />
   </div>
 </template>
 
-<style>
-
-</style>
+<style></style>
