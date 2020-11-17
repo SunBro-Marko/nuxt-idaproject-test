@@ -1,11 +1,14 @@
 <template>
   <section>
-    <h1>Каталог</h1>
-    <ul>
+    <h1 class="category-title">Каталог</h1>
+    <ul class="category-nav">
       <li v-for="category of categories" :key="category.id">
-        <a href="#" @click.prevent="openCategory(category)">{{
-          category.name
-        }}</a>
+        <NuxtLink
+          class="category-link"
+          active-class="active"
+          v-bind:to="`/catalog/${category.id}`"
+          >{{ category.name }}</NuxtLink
+        >
       </li>
     </ul>
   </section>
@@ -16,7 +19,8 @@ export default {
   computed: {
     categories() {
       return this.$store.getters.categories;
-    }
+    },
+    activeCategory() {}
   },
   methods: {
     openCategory(category) {
@@ -27,7 +31,7 @@ export default {
 </script>
 
 <style scoped>
-h1 {
+.category-title {
   font-family: PT Sans;
   font-style: normal;
   font-weight: bold;
@@ -36,11 +40,14 @@ h1 {
   margin-left: 44px;
   color: #1f1f1f;
 }
-ul {
+.category-nav {
+  margin-top: 24px;
   margin-left: 44px;
   list-style: none;
 }
-a {
+
+.category-link {
+  margin-top: 16px;
   text-decoration: none;
   font-family: PT Sans;
   font-style: normal;
@@ -50,5 +57,10 @@ a {
   display: flex;
   align-items: flex-end;
   color: #59606d;
+}
+
+.category-link.active {
+  text-decoration-line: underline;
+  color: #1f1f1f;
 }
 </style>

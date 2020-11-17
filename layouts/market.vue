@@ -27,7 +27,7 @@
     "header header header header"
     ". sidebar content ."
     "footer footer footer footer";
-  background: #e5e5e5;
+  background: #FFFFFF;
 }
 .header {
   grid-area: header;

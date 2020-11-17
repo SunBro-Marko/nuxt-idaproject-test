@@ -1,9 +1,13 @@
 export const state = () => ({
-    categories: []
+    categories: [],
+    activeCategory: 1
   })
   
   export const mutations = {
     setCategories(state, categories) {
+      state.categories = categories
+    },
+    setActiveCategories(state, newActiveCategory) {
       state.categories = categories
     }
   }
