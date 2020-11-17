@@ -1,13 +1,26 @@
 <template>
   <div class="container">
-    <h1>Тут будет сам каталог</h1>
+    <div class="container">
+      <div class="card-container">
+        <ItemCard v-for="item in items" :key="item.id" :item="item"/>
+      </div>      
+    </div>
   </div>
 </template>
 
 <script>
 export default {
-    layout: 'market',
-};
+  layout: 'market',  
+  async asyncData({$axios,params}){
+    const items = await $axios.$get(`http://front-test.idalite.com/api/product?category=${params.id}`)
+    return {items}
+  },
+  data(){
+    return{
+      message:'Сообщение для компонента'
+    }
+  }
+}
 </script>
 
 <style>
@@ -18,5 +31,11 @@ export default {
   justify-content: center;
   align-items: center;
   text-align: center;
+}
+.card-container{
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  
 }
 </style>

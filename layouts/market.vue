@@ -42,7 +42,6 @@
 
 .sidebar {
   grid-area: sidebar;
-  background-color: grey;
 }
 
 .footer {
