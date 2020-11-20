@@ -1,6 +1,15 @@
 <template>
   <div class="item-card">
     <div class="item-card-img">
+      <img
+        class="item-image"
+        :src="`http://front-test.idalite.com${item.photo}`"
+        alt=""
+      />
+    </div>
+    <div class="card-info">
+      <h3 class="card-name">{{ item.name }}</h3>
+      <h3 class="card-price">{{ item.price.toLocaleString("ru-RU") }} ₽</h3>
       <div class="item-rating">
         <div class="raiting-icon">
           <img src="~assets/raiting.icon.svg" alt="" />
@@ -15,15 +24,10 @@
         </div>
         {{ item.rating }}
       </div>
-      <img
-        class="item-image"
-        :src="`http://front-test.idalite.com${item.photo}`"
-        alt=""
-      />
-      <div class="card-addButton" @click="addItem(item)" href="#"><img src="~assets/shop.icon.png" alt=""/></div>
     </div>
-    <h3 class="card-name">{{ item.name }}</h3>
-    <h3 class="card-price">{{ item.price.toLocaleString("ru-RU") }} ₽</h3>
+    <div class="card-delete-button">
+      <button @click="deleteItem(item)"><img src="~assets/recycleBin.svg" alt=""></button>
+    </div>
   </div>
 </template>
 
@@ -39,7 +43,7 @@ export default {
     };
   },
   methods: {
-    ...mapMutations("basket", ["addItem"])
+    ...mapMutations("basket", ["addItem",'deleteItem'])
   }
 };
 </script>
@@ -48,25 +52,30 @@ export default {
 @import url("https://fonts.googleapis.com/css2?family=PT+Sans&display=swap");
 
 .item-card {
-  width: 264px;
-  height: 272px;
+  width: 100%;
+  height: 120px;
   background: #ffffff;
   box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.05);
   border-radius: 8px;
   margin: 8px;
+  display: flex;
 }
 .item-card-img {
   padding: 18px 18px 0 18px;
-  display: flex;
-  justify-content: space-between;
 }
+
 .item-image {
-  height: 180px;
+  max-height: 90px;
+  max-width: 100%;
 }
 
 .item-card-rating {
-  max-width: 100%;
+  width: 100%;
   display: flex;
+}
+
+.card-info {
+  width: 170px;
 }
 
 .card-name {
@@ -78,7 +87,6 @@ export default {
   display: flex;
   align-items: flex-end;
   color: #59606d;
-  margin: 16px 0 0 16px;
 }
 
 .card-price {
@@ -90,7 +98,6 @@ export default {
   display: flex;
   align-items: flex-end;
   color: #1f1f1f;
-  margin: 6px 0 0 16px;
 }
 
 .item-rating {
@@ -124,8 +131,5 @@ export default {
   margin: 0;
   position: absolute;
   clip: rect(var(--raiting) auto auto auto);
-}
-.card-addButton{
-  cursor: pointer;
 }
 </style>

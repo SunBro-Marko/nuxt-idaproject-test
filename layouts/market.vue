@@ -1,14 +1,23 @@
 <template>
   <div class="App">
+    <Basket/>    
     <Header class="header" />
+    <transition name="component-fade" mode="out-in">
     <Nuxt class="content" />
-    <Sidebar  class="sidebar" />
+    </transition>
+    <Sidebar class="sidebar" />
     <Footer class="footer" />
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 
+export default {
+  computed:{
+    ...mapGetters('basket',['isOpen'])
+  }
+};
 </script>
 
 <style>
@@ -27,7 +36,7 @@
     "header header header header"
     ". sidebar content ."
     "footer footer footer footer";
-  background: #FFFFFF;
+  background: #ffffff;
 }
 .header {
   grid-area: header;
@@ -47,5 +56,17 @@
 .footer {
   grid-area: footer;
   background-color: rgb(219, 214, 167);
+}
+/* Animation */
+.component-fade-enter-active,
+.component-fade-leave-active {
+  transition: all 0.7s;
+  
+}
+.component-fade-enter,
+.component-fade-leave-to {
+  opacity: 0;
+  transform: translateY(100px);
+  
 }
 </style>

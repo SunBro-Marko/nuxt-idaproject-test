@@ -13,9 +13,11 @@
         </nuxt-link>
       </div>
       <div class="nav-basket-container">
-        <div class="nav-basket">
+        <div v-on:click="openBasket" class="nav-basket">
           <img class="nav-bascket-icon" src="~assets/basket.svg" alt="" />
-          <div class="nav-basket-counter"><span>3</span></div>
+          <div v-if="isNotEmpty" class="nav-basket-counter">
+            <span>{{ itemsCount }}</span>
+          </div>
         </div>
       </div>
     </div>
@@ -23,7 +25,17 @@
 </template>
 
 <script>
-export default {};
+import { mapMutations } from "vuex";
+import { mapGetters } from "vuex";
+
+export default {
+  methods: {
+    ...mapMutations("basket", ["openBasket"])
+  },
+  computed: {
+    ...mapGetters("basket", ["isNotEmpty", "itemsCount"])
+  }
+};
 </script>
 
 <style scoped>
@@ -66,6 +78,7 @@ export default {};
   position: relative;
   display: flex;
   align-content: center;
+  cursor: pointer;
 }
 
 .nav-basket-counter {
@@ -89,7 +102,7 @@ export default {};
   font-size: 8px;
   line-height: 10px;
 }
-.nav-basket-counter span{
+.nav-basket-counter span {
   padding-top: 0.5px;
 }
 </style>
