@@ -20,15 +20,18 @@
         :src="`http://front-test.idalite.com${item.photo}`"
         alt=""
       />
-      <div class="card-addButton" @click="addItem(item)" href="#"><img src="~assets/shop.icon.png" alt=""/></div>
+      <div class="card-addButton" @click="addItem(item)" href="#"><img v-bind:class="{itemInBasket:itemsInBasket.some(i=>i.id===item.id)}" src="~assets/shop.icon.png" alt=""/></div>
     </div>
     <h3 class="card-name">{{ item.name }}</h3>
     <h3 class="card-price">{{ item.price.toLocaleString("ru-RU") }} ₽</h3>
+
+    <svg></svg>
   </div>
 </template>
 
 <script>
 import { mapMutations } from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
   props: ["item"],
@@ -40,12 +43,23 @@ export default {
   },
   methods: {
     ...mapMutations("basket", ["addItem"])
+  },  
+  computed: {
+    ...mapGetters('basket',{
+      itemsInBasket: "items"
+    })
   }
 };
 </script>
 
 <style scoped>
 @import url("https://fonts.googleapis.com/css2?family=PT+Sans&display=swap");
+
+.itemInBasket{
+  filter: saturate(20);
+  transition: all 0.3s ease-in-out;
+  transform: scale(1.2);
+}
 
 .item-card {
   width: 264px;

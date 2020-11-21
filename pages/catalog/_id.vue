@@ -27,15 +27,6 @@ export default {
       `http://front-test.idalite.com/api/product?category=${params.id}`
     );
     return { items };
-  },
-  data() {
-    return {
-      message: "Сообщение для компонента",
-      arrayOfObjects: [],
-      object: {
-        name: "Object Name"
-      }
-    };
   }
 };
 </script>
