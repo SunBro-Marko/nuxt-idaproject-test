@@ -24,6 +24,11 @@
           </transition-group>
           <BasketInputGroup />
         </div>
+        <div v-if="isOrdered" class="order-success">
+          <img src="~assets/success-hand.svg" alt="" />
+          <h2>Заявка успешно отправлена</h2>
+          <h3>Вскоре наш менеджер свяжется с Вами</h3>
+        </div>
       </div>
     </transition>
   </section>
@@ -73,10 +78,13 @@ export default {
   max-height: 360px;
   overflow-y: auto;
   overflow-x: hidden;
+  display: grid;
+  grid-template-rows: auto 1fr;
 }
 
 .basket-empty {
-  display: grid;
+  display: flex;
+  flex-direction: column;
   row-gap: 24px;
   max-width: 100%;
 }
@@ -112,6 +120,7 @@ export default {
   border-radius: 8px;
   height: 50px;
   width: 100%;
+  margin-bottom: 24px;
 
   font-family: PT Sans;
   font-style: normal;
@@ -129,6 +138,32 @@ export default {
   font-weight: bold;
   font-size: 32px;
   line-height: 41px;
+}
+.order-success {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+.order-success h2 {
+  font-family: PT Sans;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 31px;
+  margin-top: 24px;
+
+  color: #000000;
+}
+.order-success h3 {
+  font-family: PT Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 21px;
+
+  color: #59606d;
 }
 
 /*Animations*/

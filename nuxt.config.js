@@ -11,7 +11,7 @@ export default {
   },
 
   loading: {
-    color: "blue",
+    color: "#59606d",
     height: "5px"
   },
 
@@ -19,7 +19,7 @@ export default {
   css: [],
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
-  plugins: ["@/plugins/vee-validate","@/plugins/vue-masked-input.js",'@/plugins/persistedState.client.js'],
+  plugins: ["@/plugins/vee-validate","@/plugins/vue-masked-input.js",'@/plugins/persistedState.js'],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
   components: true,
