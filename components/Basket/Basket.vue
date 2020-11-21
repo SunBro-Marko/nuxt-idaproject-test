@@ -1,18 +1,17 @@
 <template>
   <section>
-    <transition name="overlay"
-      >
+    <transition name="overlay">
       <div v-if="isOpen" @click="closeBasket" class="overlay"></div
     ></transition>
     <transition name="basket-container">
       <div v-if="isOpen" class="basket-container">
-        <div class="basket-header">          
+        <div class="basket-header">
           <h1 class="basket-header-title">Корзина</h1>
           <button class="basket-button-close" @click="closeBasket">
             <img src="~assets/CloseButton.svg" alt="" />
           </button>
         </div>
-        <div v-if="!isNotEmpty&&!isOrdered" class="basket-empty">
+        <div v-if="!isNotEmpty && !isOrdered" class="basket-empty">
           <p>Пока что вы ничего не добавили в корзину</p>
           <button @click="closeBasket" class="basket-button-black">
             Перейти к выбору
@@ -23,10 +22,8 @@
           <transition-group name="basket">
             <BasketCard v-for="item in items" :key="item._id" :item="item" />
           </transition-group>
-          <BasketInputGroup/>
+          <BasketInputGroup />
         </div>
-
-        
       </div>
     </transition>
   </section>
@@ -37,12 +34,11 @@ import { mapMutations } from "vuex";
 import { mapGetters } from "vuex";
 
 export default {
-  
   methods: {
     ...mapMutations("basket", ["deleteItem", "closeBasket"])
   },
   computed: {
-    ...mapGetters("basket", ["items", "isOpen", "isNotEmpty","isOrdered"])
+    ...mapGetters("basket", ["items", "isOpen", "isNotEmpty", "isOrdered"])
   }
 };
 </script>
@@ -134,7 +130,6 @@ export default {
   font-size: 32px;
   line-height: 41px;
 }
-
 
 /*Animations*/
 

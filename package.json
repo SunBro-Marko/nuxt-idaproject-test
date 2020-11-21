@@ -13,7 +13,8 @@
     "core-js": "^3.6.5",
     "nuxt": "^2.14.6",
     "v-mask": "^2.2.3",
-    "vee-validate": "^3.4.5"
+    "vee-validate": "^3.4.5",
+    "vuex-persistedstate": "^4.0.0-beta.1"
   },
   "devDependencies": {}
 }
