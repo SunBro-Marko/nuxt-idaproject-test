@@ -24,8 +24,6 @@
     </div>
     <h3 class="card-name">{{ item.name }}</h3>
     <h3 class="card-price">{{ item.price.toLocaleString("ru-RU") }} ₽</h3>
-
-    <svg></svg>
   </div>
 </template>
 

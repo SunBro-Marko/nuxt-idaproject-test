@@ -1,6 +1,6 @@
 <template>
   <div class="App">
-    <Basket/>    
+    <Basket v-if="isOpen"/>    
     <Header class="header" />
     <transition name="component-fade" mode="out-in">
     <Nuxt class="content" />
@@ -11,8 +11,12 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 
 export default {
+  computed: {
+    ...mapGetters("basket", ["isOpen"])
+  }
   
 };
 </script>

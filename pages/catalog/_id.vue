@@ -13,11 +13,9 @@
       </DropDown>
     </div>
 
-    <div class="card-container">
-      <transition-group class="card-container" name="flip-list" tag="div">
+    <transition-group class="card-container" name="flip-list">
       <ItemCard v-for="item in SortedList" :key="item.id" :item="item" />
-      </transition-group>
-    </div>
+    </transition-group>
   </div>
 </template>
 
@@ -56,7 +54,6 @@ export default {
 </script>
 
 <style>
-
 .flip-list-move {
   transition: all 1s;
 }
