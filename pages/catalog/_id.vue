@@ -1,19 +1,22 @@
 <template>
   <div class="container">
     <div class="sort-menu">
-      <!-- <DropDown
-      class="my-dropdown-toggle"
-      :options="arrayOfObjects"
-      :selected="object"
-      v-on:updateOption="none"
-      :placeholder="'Select an Item'"
-      :closeOnOutsideClick="boolean"
-    >
-    </DropDown> -->
+      <h2>Сортировать</h2>
+      <DropDown
+        class="my-dropdown-toggle"
+        :options="dropdown.variants"
+        :selected="dropdown.selected"
+        v-on:updateOption="OnSelect"
+        :placeholder="'Select an Item'"
+        :closeOnOutsideClick="true"
+      >
+      </DropDown>
     </div>
 
     <div class="card-container">
-      <ItemCard v-for="item in items" :key="item.id" :item="item" />
+      <transition-group class="card-container" name="flip-list" tag="div">
+      <ItemCard v-for="item in SortedList" :key="item.id" :item="item" />
+      </transition-group>
     </div>
   </div>
 </template>
@@ -21,17 +24,43 @@
 <script>
 export default {
   layout: "market",
-
   async asyncData({ $axios, params }) {
     const items = await $axios.$get(
       `http://front-test.idalite.com/api/product?category=${params.id}`
     );
     return { items };
+  },
+  data() {
+    return {
+      dropdown: {
+        selected: { name: "по цене", field: "price" },
+        variants: [
+          { name: "по цене", field: "price" },
+          { name: "по популярности", field: "rating" }
+        ]
+      }
+    };
+  },
+  computed: {
+    SortedList: function() {
+      let direction = this.dropdown.selected.field;
+      return this.items.sort((a, b) => a[direction] - b[direction]);
+    }
+  },
+  methods: {
+    OnSelect(payload) {
+      this.dropdown.selected = payload;
+    }
   }
 };
 </script>
 
 <style>
+
+.flip-list-move {
+  transition: all 1s;
+}
+
 .container {
   margin: 0 auto;
   min-height: 100vh;
@@ -47,7 +76,8 @@ export default {
 }
 
 .sort-menu {
-  display: inline-flex;
-  justify-content: right;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 </style>
