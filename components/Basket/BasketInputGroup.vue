@@ -1,42 +1,57 @@
 <template>
   <div class="input-group">
-    <ValidationProvider class="basket-input" name="Имя" rules="required" v-slot="{ errors }">
-      <input
-        name="name"
-        placeholder="Введите своё имя"
-        value="name"
-        v-model="name"
-        type="name"
-      />
-      <span>{{ errors[0] }}</span>
-    </ValidationProvider>
+    <h3>Оформить заказ</h3>
+    <ValidationObserver class="input-group" v-slot="{ handleSubmit }">
+      <ValidationProvider
+        class="basket-input"
+        name="Имя"
+        rules="required|min:3"
+        v-slot="{ errors }"
+      >
+        <input name="name" placeholder="Ваше имя" v-model="name" type="text" />
+        <span>{{ errors[0] }}</span>
+      </ValidationProvider>
 
-    <ValidationProvider class="basket-input" name="Телефон" rules="required" v-slot="{ errors }">
-      <input
-        name="phone"
-        placeholder="+7(999) 999-99-99"
-        v-mask="'+7(###) ###-##-##'"
-        v-model="phone"
-        type="tel"
-        autocomplete="on"
-      />
-      <span>{{ errors[0] }}</span>
-    </ValidationProvider>
-    <ValidationProvider class="basket-input" name="Адрес" rules="required" v-slot="{ errors }">
-      <input
-        name="adress"
-        placeholder="Введите адрес доставки"
-        v-model="adress"
-        type="text"
-      />
-      <span>{{ errors[0] }}</span>
-    </ValidationProvider>
-
-    <button class="basket-button-black">Отправить</button>
+      <ValidationProvider
+        class="basket-input"
+        name="Телефон"
+        rules="required|phone"
+        v-slot="{ errors }"
+      >
+        <input
+          name="phone"
+          placeholder="+7(999) 999-99-99"
+          v-mask="'+7(###) ###-##-##'"
+          v-model="phone"
+          type="text"
+        />
+        <span>{{ errors[0] }}</span>
+      </ValidationProvider>
+      <ValidationProvider
+        class="basket-input"
+        name="Адрес"
+        rules="required"
+        v-slot="{ errors }"
+      >
+        <input
+          name="adress"
+          placeholder="Адрес"
+          v-model="adress"
+          invalid="adress.valid"
+          type="text"
+        />
+        <span>{{ errors[0] }}</span>
+      </ValidationProvider>
+      <button v-on:click="handleSubmit(testmet)" class="basket-button-black">
+        Отправить
+      </button>
+    </ValidationObserver>
   </div>
 </template>
 
 <script>
+import { mapActions } from "vuex";
+
 export default {
   data() {
     return {
@@ -44,6 +59,16 @@ export default {
       phone: "",
       adress: ""
     };
+  },
+  methods: {
+    ...mapActions("basket", ["checkout"]),
+    testmet() {
+      this.checkout({
+        name:this.name,
+        phone:this.phone,
+        adress:this.adress
+      });
+    }
   }
 };
 </script>
@@ -68,18 +93,27 @@ export default {
   line-height: 21px;
 
   padding-left: 15px;
-
 }
 /* трюк для обхода перекрашивания поля автокомплита*/
-.input-group input:-webkit-autofill{
+.input-group input:-webkit-autofill {
   box-shadow: 0 0 0 30px #f8f8f8 inset !important;
 }
 
-.basket-input{
+.input-group h3 {
+  margin-top: 32px;
+  font-family: PT Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 23px;
+  color: #59606d;
+}
+
+.basket-input {
   position: relative;
 }
 
-.basket-input span{
+.basket-input span {
   position: absolute;
   bottom: -18px;
   left: 16px;
@@ -87,6 +121,4 @@ export default {
   font-size: 14px;
   color: red;
 }
-
-
 </style>

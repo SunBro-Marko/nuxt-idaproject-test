@@ -1,17 +1,18 @@
 <template>
   <section>
     <transition name="overlay"
-      ><div v-if="isOpen" @click="closeBasket" class="overlay"></div
+      >
+      <div v-if="isOpen" @click="closeBasket" class="overlay"></div
     ></transition>
     <transition name="basket-container">
       <div v-if="isOpen" class="basket-container">
-        <div class="basket-header">
+        <div class="basket-header">          
           <h1 class="basket-header-title">Корзина</h1>
           <button class="basket-button-close" @click="closeBasket">
             <img src="~assets/CloseButton.svg" alt="" />
           </button>
         </div>
-        <div v-if="!isNotEmpty" class="basket-empty">
+        <div v-if="!isNotEmpty&&!isOrdered" class="basket-empty">
           <p>Пока что вы ничего не добавили в корзину</p>
           <button @click="closeBasket" class="basket-button-black">
             Перейти к выбору
@@ -41,7 +42,7 @@ export default {
     ...mapMutations("basket", ["deleteItem", "closeBasket"])
   },
   computed: {
-    ...mapGetters("basket", ["items", "isOpen", "isNotEmpty"])
+    ...mapGetters("basket", ["items", "isOpen", "isNotEmpty","isOrdered"])
   }
 };
 </script>
