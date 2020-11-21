@@ -22,14 +22,10 @@
           <transition-group name="basket">
             <BasketCard v-for="item in items" :key="item._id" :item="item" />
           </transition-group>
+          <BasketInputGroup/>
         </div>
 
-        <div class="input-group">
-          <ValidationProvider rules="secret" v-slot="{ errors }">
-            <input v-model="email" type="text" />
-            <span>{{ errors[0] }}</span>
-          </ValidationProvider>
-        </div>
+        
       </div>
     </transition>
   </section>
@@ -40,11 +36,7 @@ import { mapMutations } from "vuex";
 import { mapGetters } from "vuex";
 
 export default {
-    data(){
-        return{
-            email:''
-        }
-    },
+  
   methods: {
     ...mapMutations("basket", ["deleteItem", "closeBasket"])
   },
@@ -130,7 +122,7 @@ export default {
   font-size: 16px;
   line-height: 21px;
 }
-.basket-button-black:overlay {
+.basket-button-black:hover {
   background: #59606d;
 }
 
@@ -141,6 +133,8 @@ export default {
   font-size: 32px;
   line-height: 41px;
 }
+
+
 /*Animations*/
 
 .basket-enter-active,
