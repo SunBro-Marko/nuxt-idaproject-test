@@ -1,6 +1,5 @@
 <template>
   <section>
-    <client-only>
     <h1 class="category-title">Каталог</h1>
     <ul class="category-nav">
       <li v-for="category of categories" :key="category.id">
@@ -12,7 +11,6 @@
         >
       </li>
     </ul>
-    </client-only>
   </section>
 </template>
 
