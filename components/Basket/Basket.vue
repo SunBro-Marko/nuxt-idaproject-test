@@ -1,39 +1,30 @@
 <template>
-  <section>
-    <client-only>
-    <transition name="overlay">
-      <div v-if="isOpen" @click="closeBasket" class="overlay"></div
-    ></transition>
-    <transition name="basket-container">
-      <div v-if="isOpen" class="basket-container">
-        <div class="basket-header">
-          <h1 class="basket-header-title">Корзина</h1>
-          <button class="basket-button-close" @click="closeBasket">
-            <img src="~assets/closebutton.svg" alt="" />
-          </button>
-        </div>
-        <div v-if="!isNotEmpty && !isOrdered" class="basket-empty">
-          <p>Пока что вы ничего не добавили в корзину</p>
-          <button @click="closeBasket" class="basket-button-black">
-            Перейти к выбору
-          </button>
-        </div>
-        <div class="basket-notEmpty" v-if="isNotEmpty">
-          <h3>Товары в корзине</h3>
-          <transition-group name="basket">
-            <BasketCard v-for="item in items" :key="item._id" :item="item" />
-          </transition-group>
-          <BasketInputGroup />
-        </div>
-        <div v-if="isOrdered" class="order-success">
-          <img src="~assets/success-hand.svg" alt="" />
-          <h2>Заявка успешно отправлена</h2>
-          <h3>Вскоре наш менеджер свяжется с Вами</h3>
-        </div>
-      </div>
-    </transition>
-    </client-only>
-  </section>
+  <div class="basket-container">
+    <div class="basket-header">
+      <h1 class="basket-header-title">Корзина</h1>
+      <button class="basket-button-close" @click="closeBasket">
+        <img src="~assets/closebutton.svg" alt="" />
+      </button>
+    </div>
+    <div v-if="!isNotEmpty && !isOrdered" class="basket-empty">
+      <p>Пока что вы ничего не добавили в корзину</p>
+      <button @click="closeBasket" class="basket-button-black">
+        Перейти к выбору
+      </button>
+    </div>
+    <div class="basket-notEmpty" v-if="isNotEmpty">
+      <h3>Товары в корзине</h3>
+      <transition-group name="basket">
+        <BasketCard v-for="item in items" :key="item._id" :item="item" />
+      </transition-group>
+      <BasketInputGroup />
+    </div>
+    <div v-if="isOrdered" class="order-success">
+      <img src="~assets/success-hand.svg" alt="" />
+      <h2>Заявка успешно отправлена</h2>
+      <h3>Вскоре наш менеджер свяжется с Вами</h3>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -42,13 +33,13 @@ import { mapGetters } from "vuex";
 
 export default {
   methods: {
-    ...mapMutations("basket", ["deleteItem", "closeBasket","openBasket"])
+    ...mapMutations("basket", ["deleteItem", "closeBasket", "openBasket"])
   },
   computed: {
     ...mapGetters("basket", ["items", "isOpen", "isNotEmpty", "isOrdered"])
   },
-  mounted(){
-    this.openBasket()
+  mounted() {
+    this.openBasket();
   }
 };
 </script>
@@ -56,35 +47,6 @@ export default {
 <style>
 .my-class {
   overflow-y: hidden;
-}
-.overlay {
-  position: absolute;
-  left: 0;
-  top: 0;
-  min-width: 100vw;
-  min-height: 100vh;
-  background: #ffffff;
-  opacity: 0.8;
-  z-index: 98;
-}
-.basket-container {
-  top: 0;
-  position: absolute;
-  right: 0;
-  min-height: 100vh;
-  width: 460px;
-  max-width: 460px;
-  background: #ffffff;
-  box-shadow: -4px 0px 16px rgba(0, 0, 0, 0.05);
-  border-radius: 8px 0px 0px 8px;
-  z-index: 99;
-  box-sizing: border-box;
-  padding: 48px;
-  max-height: 360px;
-  overflow-y: auto;
-  overflow-x: hidden;
-  display: grid;
-  grid-template-rows: auto 1fr;
 }
 
 .basket-empty {
@@ -181,24 +143,5 @@ export default {
 .basket-leave-to {
   opacity: 0;
   transform: translateX(-150px);
-}
-
-.overlay-enter-active,
-.overlay-leave-active {
-  transition: all 1s;
-}
-.overlay-enter,
-.overlay-leave-to {
-  opacity: 0;
-}
-
-.basket-container-enter-active,
-.basket-container-leave-active {
-  transition: all 0.5s;
-}
-.basket-container-enter,
-.basket-container-leave-to {
-  opacity: 0;
-  transform: translateX(350px);
 }
 </style>
