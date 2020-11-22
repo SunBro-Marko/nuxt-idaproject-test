@@ -1,6 +1,9 @@
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   target:'static',
+  router: {
+    base: '/nuxt-idaproject-test/'
+  },
   head: {
     title: "Test app for IDA.Project",
     meta: [
