@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="sort-menu">
-      <h2>Сортировать</h2>
+      <h2>Сортировать по:</h2>
       <DropDown
         class="my-dropdown-toggle"
         :options="dropdown.variants"
@@ -31,10 +31,20 @@ export default {
   data() {
     return {
       dropdown: {
-        selected: { name: "по цене", field: "price" },
+        selected: {
+          name: "По цене",
+          label: "цене",
+          field: "price",
+          direction: "asc"
+        },
         variants: [
-          { name: "по цене", field: "price" },
-          { name: "по популярности", field: "rating" }
+          { name: "По цене", label: "цене", field: "price", direction: "asc" },
+          {
+            name: "По популярности",
+            label: "популярности",
+            field: "rating",
+            direction: "desc"
+          }
         ]
       }
     };
@@ -42,7 +52,11 @@ export default {
   computed: {
     SortedList: function() {
       let direction = this.dropdown.selected.field;
-      return this.items.sort((a, b) => a[direction] - b[direction]);
+      return this.items.sort((a, b) =>
+        this.dropdown.selected.direction === "asc"
+          ? a[direction] - b[direction]
+          : b[direction] - a[direction]
+      );
     }
   },
   methods: {

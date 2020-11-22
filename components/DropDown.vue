@@ -3,9 +3,9 @@
     <li
       @click="toggleMenu()"
       class="dropdown-toggle"
-      v-if="selectedOption.name !== undefined"
+      v-if="selectedOption.label !== undefined"
     >
-      {{ selectedOption.name }}
+      {{ selectedOption.label }}
       <span class="caret"></span>
     </li>
 
