@@ -29,7 +29,7 @@
     </div>
     <div class="card-delete-button">
       <button @click="deleteItem(item)">
-        <img src="~assets/recycleBin.svg" alt="" />
+        <img src="~assets/recyclebin.svg" alt="" />
       </button>
     </div>
   </div>
