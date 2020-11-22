@@ -76,5 +76,14 @@ export default {
   display: flex;
   align-items: center;
   justify-content: flex-end;
+  min-height: 90px;
+}
+
+.sort-menu h2 {
+  font-family: PT Sans;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 21px;
 }
 </style>
