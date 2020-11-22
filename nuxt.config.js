@@ -4,6 +4,9 @@ export default {
   router: {
     base: '/nuxt-idaproject-test/'
   },
+  generate:{
+    dir:'docs'
+  },
   head: {
     title: "Test app for IDA.Project",
     meta: [
