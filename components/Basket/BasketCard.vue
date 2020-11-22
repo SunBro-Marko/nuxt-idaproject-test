@@ -8,8 +8,10 @@
       />
     </div>
     <div class="card-info">
-      <h3 class="card-name">{{ item.name }}</h3>
-      <h3 class="card-price">{{ item.price.toLocaleString("ru-RU") }} ₽</h3>
+      <span>
+        <h3 class="card-name">{{ item.name }}</h3>
+        <h3 class="card-price">{{ item.price.toLocaleString("ru-RU") }} ₽</h3>
+      </span>
       <div class="item-rating">
         <div class="raiting-icon">
           <img src="~assets/raiting.icon.svg" alt="" />
@@ -26,7 +28,9 @@
       </div>
     </div>
     <div class="card-delete-button">
-      <button @click="deleteItem(item)"><img src="~assets/recycleBin.svg" alt=""></button>
+      <button @click="deleteItem(item)">
+        <img src="~assets/recycleBin.svg" alt="" />
+      </button>
     </div>
   </div>
 </template>
@@ -43,7 +47,7 @@ export default {
     };
   },
   methods: {
-    ...mapMutations("basket", ["addItem",'deleteItem'])
+    ...mapMutations("basket", ["addItem", "deleteItem"])
   }
 };
 </script>
@@ -76,6 +80,10 @@ export default {
 
 .card-info {
   width: 170px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 12px 0 16px 0;
 }
 
 .card-name {
@@ -131,5 +139,17 @@ export default {
   margin: 0;
   position: absolute;
   clip: rect(var(--raiting) auto auto auto);
+}
+
+.card-delete-button{
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card-delete-button button{
+  background: none;
+  cursor: pointer;
+  outline: #ffffff;
 }
 </style>
