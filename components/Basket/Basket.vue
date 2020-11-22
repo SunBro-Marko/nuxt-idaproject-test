@@ -9,7 +9,7 @@
         <div class="basket-header">
           <h1 class="basket-header-title">Корзина</h1>
           <button class="basket-button-close" @click="closeBasket">
-            <img src="~assets/CloseButton.svg" alt="" />
+            <img src="~assets/closebutton.svg" alt="" />
           </button>
         </div>
         <div v-if="!isNotEmpty && !isOrdered" class="basket-empty">
