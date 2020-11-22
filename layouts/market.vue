@@ -1,9 +1,11 @@
 <template>
   <div class="App">
-    <Basket v-if="isOpen"/>    
+    <client-only>
+      <Basket v-if="isOpen" />
+    </client-only>
     <Header class="header" />
     <transition name="component-fade" mode="out-in">
-    <Nuxt class="content" />
+      <Nuxt class="content" />
     </transition>
     <Sidebar class="sidebar" />
     <Footer class="footer" />
@@ -17,7 +19,6 @@ export default {
   computed: {
     ...mapGetters("basket", ["isOpen"])
   }
-  
 };
 </script>
 
@@ -62,12 +63,10 @@ export default {
 .component-fade-enter-active,
 .component-fade-leave-active {
   transition: all 0.7s;
-  
 }
 .component-fade-enter,
 .component-fade-leave-to {
   opacity: 0;
   transform: translateY(100px);
-  
 }
 </style>

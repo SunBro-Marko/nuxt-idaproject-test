@@ -12,14 +12,16 @@
           HOME.PAGE
         </nuxt-link>
       </div>
-      <div class="nav-basket-container">
-        <div v-on:click="openBasket" class="nav-basket">
-          <img class="nav-bascket-icon" src="~assets/basket.svg" alt="" />
-          <div v-if="isNotEmpty" class="nav-basket-counter">
-            <span>{{ itemsCount }}</span>
+      <client-only>
+        <div class="nav-basket-container">
+          <div v-on:click="openBasket" class="nav-basket">
+            <img class="nav-bascket-icon" src="~assets/basket.svg" alt="" />
+            <div v-if="isNotEmpty" class="nav-basket-counter">
+              <span>{{ itemsCount }}</span>
+            </div>
           </div>
         </div>
-      </div>
+      </client-only>
     </div>
   </section>
 </template>

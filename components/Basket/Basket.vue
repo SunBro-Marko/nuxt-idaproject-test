@@ -1,5 +1,6 @@
 <template>
   <section>
+    <client-only>
     <transition name="overlay">
       <div v-if="isOpen" @click="closeBasket" class="overlay"></div
     ></transition>
@@ -31,6 +32,7 @@
         </div>
       </div>
     </transition>
+    </client-only>
   </section>
 </template>
 
@@ -40,10 +42,13 @@ import { mapGetters } from "vuex";
 
 export default {
   methods: {
-    ...mapMutations("basket", ["deleteItem", "closeBasket"])
+    ...mapMutations("basket", ["deleteItem", "closeBasket","openBasket"])
   },
   computed: {
     ...mapGetters("basket", ["items", "isOpen", "isNotEmpty", "isOrdered"])
+  },
+  mounted(){
+    this.openBasket()
   }
 };
 </script>
