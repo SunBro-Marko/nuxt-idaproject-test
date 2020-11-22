@@ -6,10 +6,11 @@ on:
     - master
 
 jobs:
-  build-deploy:
-    runs-on: ubuntu-18.04
+  build:
+    runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
+      - uses: actions/checkout@v1
+      - uses: kappa0923/nuxtjs-generate-action@v0.1.0
 
     - name: Setup Node
       uses: actions/setup-node@v1
