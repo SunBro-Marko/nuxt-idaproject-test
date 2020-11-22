@@ -15,7 +15,7 @@
       <client-only>
         <div class="nav-basket-container">
           <div v-on:click="openBasket" class="nav-basket">
-            <img class="nav-bascket-icon" src="~assets/basket.svg" alt="" />
+            <img class="nav-bascket-icon" src="@assets/basket.svg" alt="" />
             <div v-if="isNotEmpty" class="nav-basket-counter">
               <span>{{ itemsCount }}</span>
             </div>
