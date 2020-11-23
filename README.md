@@ -1,19 +1,24 @@
-# mynuxtapp
+# Тестовое задание для компании ida.project
 
 ## Build Setup
-
 ```bash
-# install dependencies
+# Склонируйте мой репозиторий к себе на компьютер
+$ git clone https://github.com/SunBro-Marko/nuxt-idaproject-test
+
+# Перейдите в папку с проектом
+$ cd nuxt-idaproject-test
+
+# Установите зависимости
 $ npm install
 
-# serve with hot reload at localhost:3000
+# Выполните команду для запуска проекта в режиме разработки на localhost:3000/nuxt-idaproject-test/
 $ npm run dev
 
-# build for production and launch server
+# Запуск сборки для генерации проекта на сервер (в nuxt.config.js нужно изменить значение target на server) 
 $ npm run build
 $ npm run start
 
-# generate static project
+# Генерация статики для возможности выложить сайт на хостинги (в nuxt.config.js нужно изменить значение target на static) 
 $ npm run generate
 ```
 
