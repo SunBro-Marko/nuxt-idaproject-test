@@ -91,6 +91,7 @@ export default {
   align-items: center;
   justify-content: flex-end;
   min-height: 90px;
+  padding-right: 40px;
 }
 
 .sort-menu h2 {
