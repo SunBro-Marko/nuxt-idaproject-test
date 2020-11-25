@@ -24,7 +24,7 @@ export default {
   layout: "market",
   async asyncData({ $axios, params }) {
     const items = await $axios.$get(
-      `http://front-test.idalite.com/api/product?category=${params.id}`
+      `https://front-test.idalite.com/api/product?category=${params.id}`
     );
     return { items };
   },
