@@ -17,7 +17,7 @@
       </div>
       <img
         class="item-image"
-        :src="`http://front-test.idalite.com${item.photo}`"
+        :src="`https://front-test.idalite.com${item.photo}`"
         alt=""
       /><client-only>
         <div class="card-addButton" @click="addItem(item)" href="#">

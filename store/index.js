@@ -14,7 +14,7 @@ export const state = () => ({
   
   export const actions = {
     async nuxtServerInit({commit}) {
-      const categories = await this.$axios.$get('http://front-test.idalite.com/api/product-category')  
+      const categories = await this.$axios.$get('https://front-test.idalite.com/api/product-category')  
         commit('setCategories', categories)
     },
   }
